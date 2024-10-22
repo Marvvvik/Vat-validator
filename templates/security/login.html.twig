@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    {% block javascripts %}
+        <link rel="stylesheet "href="{{ asset('assets/css/style.css')}}"
+    {%endblock %}
 </head>
 
 <body>
@@ -25,135 +28,9 @@
         </form>
     </div>
 
-    <script>
-        const form = document.querySelector('.loginForm form');
-        const errorMessageDiv = document.getElementById('error-message');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const email = form.querySelector('input[name="email"]').value;
-            const password = form.querySelector('input[name="password"]').value;
-
-            const response = await fetch('/api/login_check', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('token', data.token);
-                window.location.href = '/';
-            } else {
-                const errorData = await response.json();
-                errorMessageDiv.textContent = "Incorrect username or password";
-                errorMessageDiv.style.display = 'block';
-            }
-        });
-    </script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(45deg, #5c068c 50%, #ff8200);
-        }
-
-        html,
-        body {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .loginForm {
-            width: 20%;
-            height: 50%;
-            background: #4e196b;
-            border-radius: 3rem;
-            border: #ff8200 solid 0.2rem;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .loginFromTitle {
-            background: #ff8200;
-            width: 40%;
-            text-align: center;
-            border-bottom-left-radius: 2rem;
-            border-bottom-right-radius: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .loginFromTitle h1 {
-            padding: 1rem 0 0 0;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .loginForm h1 {
-            margin: 0 0 1.5rem 0;
-            font-size: 3rem;
-            color: #fff;
-        }
-
-        .loginForm form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: auto;
-        }
-
-        .loginForm input {
-            padding: 1rem;
-            width: 80%;
-            margin-top: 2rem;
-            font-family: "Poppins", sans-serif;
-            border: none;
-        }
-
-        .loginForm button {
-            margin-top: 4rem;
-            padding: 1rem 4rem;
-            cursor: pointer;
-            background: #ff8200;
-            border: none;
-            color: #fff;
-            font-size: 2rem;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .loginForm button:hover {
-            box-shadow: 15rem 0 0 inset #fff;
-            color: #ff8200;
-            transition: box-shadow 0.8s, color 0.8s;
-        }
-
-        .error {
-            color: red;
-            font-family: "Poppins", sans-serif;
-            font-size: 1.5rem;
-            width: 80%;
-            height: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    {% block javascriptLogin %}
+        <script src="{{ asset('assets/js/login.js')}}"
+    {%endblock %}
 
 </body>
 

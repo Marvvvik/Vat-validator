@@ -1,7 +1,5 @@
 <?php
 
-// src/Entity/VatValidationResult.php
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -12,27 +10,26 @@ class VatValidationResult
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $vatNumber;
+    private string $vatNumber;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $companyName;
+    private ?string $companyName = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $address;
+    private ?string $address = null;
 
     #[ORM\Column(type: 'datetime')]
-    private $validationDate;
+    private \DateTimeInterface $validationDate;
 
-    // Getters and setters
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getVatNumber(): ?string
+    public function getVatNumber(): string
     {
         return $this->vatNumber;
     }
@@ -40,7 +37,6 @@ class VatValidationResult
     public function setVatNumber(string $vatNumber): self
     {
         $this->vatNumber = $vatNumber;
-
         return $this;
     }
 
@@ -52,7 +48,6 @@ class VatValidationResult
     public function setCompanyName(?string $companyName): self
     {
         $this->companyName = $companyName;
-
         return $this;
     }
 
@@ -64,11 +59,10 @@ class VatValidationResult
     public function setAddress(?string $address): self
     {
         $this->address = $address;
-
         return $this;
     }
 
-    public function getValidationDate(): ?\DateTimeInterface
+    public function getValidationDate(): \DateTimeInterface
     {
         return $this->validationDate;
     }
@@ -76,8 +70,8 @@ class VatValidationResult
     public function setValidationDate(\DateTimeInterface $validationDate): self
     {
         $this->validationDate = $validationDate;
-
         return $this;
     }
 }
+
 
